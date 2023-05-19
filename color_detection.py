@@ -1,7 +1,6 @@
 import cv2
 import pandas as pd
-
-img_path = 'pic2.jpg'
+img_path = 'image.jpg'
 csv_path = 'colors.csv'
 
 # reading csv file
@@ -24,7 +23,6 @@ def get_color_name(R,G,B):
 		if d <= minimum:
 			minimum = d
 			cname = df.loc[i, 'color_name']
-
 	return cname
 
 #function to get x,y coordinates of mouse double click
@@ -42,7 +40,6 @@ def draw_function(event, x, y, flags, params):
 # creating window
 cv2.namedWindow('image')
 cv2.setMouseCallback('image', draw_function)
-
 while True:
 	cv2.imshow('image', img)
 	if clicked:
@@ -57,8 +54,6 @@ while True:
 		#For very light colours we will display text in black colour
 		if r+g+b >=600:
 			cv2.putText(img, text, (50,50), 2,0.8, (0,0,0),2,cv2.LINE_AA)
-
 	if cv2.waitKey(20) & 0xFF == 27:
 		break
-
 cv2.destroyAllWindows()
